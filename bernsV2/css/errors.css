@@ -1,0 +1,12 @@
+.errors {
+	float: right;
+	width: 300px;
+	height: 300px;
+	text-align: center;
+	margin-top: -25px;
+	border: 1px solid black;
+}
+.errors p {
+	color: red;
+	font-weight: 800;
+}
