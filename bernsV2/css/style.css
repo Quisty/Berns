@@ -1,0 +1,25 @@
+* {
+	font-family: Lato;
+	border-radius: 0px !important;
+}
+.table-scroller {
+	height: 800px;
+	overflow: auto;
+	width: 100%;
+}
+.slider-img {
+	height: 500px !important;
+	width: 100%;
+}
+.sideinfo {
+	background-color: #485c6f;
+	width: 100%;
+	margin: 0;
+	padding: 110px 20px;
+	color: white;
+}
+.citater {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}

@@ -1,59 +1,56 @@
 <?php
 require_once 'core/init.php';
-
 if (Input::exists()) {
-	if (Token::check(Input::get('token'))) {
-		$validate = new Validate();
-		$validation = $validate->check($_POST, array(
-			'username' => array(
-				'required' => true,
-				'min' => 2,
-				'max' => 20,
-				'unique' => 'users'
-			),
-			'password' => array(
-				'required' => true,
-				'min' => 6
-			),
-			'password_again' => array(
-				'required' => true,
-				'matches' => 'password'
-			),
-			'name' => array(
-				'required' => true,
-				'min' => 2,
-				'max' => 50
-			),
-
-		));
-
-		if ($validation->passed()) {
-			$user = new User();
-
-			$salt = Hash::salt(32);
-
-			try {
-				$user->create(array(
-					'username' => Input::get('username'),
-					'password' => Hash::make(Input::get('password'), $salt),
-					'salt' => $salt,
-					'name' => Input::get('name'),
-					'joined' => date('Y-m-d H:i:s'),
-					'group' => 1
-				));
-
-				Redirect::to('login.php');
-
-			} catch(Exception $e) {
-				die($e->getMessage());
-			}
-		} else {
-			foreach ($validation->errors() as $error) {
-				echo $error, '<br>';
-			}
-		}
-	}
-}	
+    if(Token::check(Input::get('token'))) {
+        $validate = new Validate();
+        $validation = $validate->check($_POST, array(
+            'name' => array(
+                'name' => 'Name',
+                'required' => true,
+                'min' => 2,
+                'max' => 50
+            ),
+            'username' => array(
+                'name' => 'Username',
+                'required' => true,
+                'min' => 2,
+                'max' => 20,
+                'unique' => 'users'
+            ),
+            'password' => array(
+                'name' => 'Password',
+                'required' => true,
+                'min' => 6
+            ),
+            'password_again' => array(
+                'required' => true,
+                'matches' => 'password'
+            ),
+        ));
+        if ($validate->passed()) {
+            $user = new User();
+            $salt = Hash::salt(32);
+            try {
+                $user->create(array(
+                    'name' => Input::get('name'),
+                    'username' => Input::get('username'),
+                    'password' => Hash::make(Input::get('password'), $salt),
+                    'salt' => $salt,
+                    'joined' => date('Y-m-d H:i:s'),
+                    'group' => 1
+                ));
+                Session::flash('home', 'Welcome ' . Input::get('username') . '! Your account has been registered. You may now log in.');
+                Redirect::to('index.php');
+            } catch(Exception $e) {
+                echo $error, '<br>';
+            }
+        } else {
+            foreach ($validate->errors() as $error) {
+                echo $error . "<br>";
+            }
+        }
+    }
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -61,6 +58,8 @@ if (Input::exists()) {
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Lato:300" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" href="css/animate.min.css">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="css/login_register.css">

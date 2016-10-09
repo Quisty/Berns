@@ -32,7 +32,8 @@ if(Input::exists()) {
                 'password' => Hash::make(Input::get('new_password'), $salt),
                 'salt' => $salt
             ));
-            Session::flash('home', 'Your password has been changed!');
+            Session::flash('home', '<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>Din adgangskode er blevet opdateret!
+</div>');
             Redirect::to('index.php');
         }
     } else {
@@ -42,23 +43,31 @@ if(Input::exists()) {
     }
 }
 ?>
+<div class="col-xs-12 col-md-6">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3>Opdater din adgangskode</h3>
+        </div>
+        <div class="panel-body">
+            <form action="" method="post">
+                <div class="field form-group">
+                    <label for="current_password">Adgangskode</label>
+                    <input type="password" name="current_password" id="current_password" class="form-control">
+                </div>
+                <div class="field form-group">
+                    <label for="new_password">Ny adgangskode</label>
+                    <input type="password" name="new_password" id="new_password" class="form-control">
+                </div>
 
-<form action="" method="post">
-    <div class="field">
-        <label for="current_password">Current Password</label>
-        <input type="password" name="current_password" id="current_password">
+                <div class="field form-group">
+                    <label for="new_password_again">Gentag adgangskode</label>
+                    <input type="password" name="new_password_again" id="new_password_again" class="form-control">
+                </div>
+
+                <input type="hidden" name="token" id="token" value="<?php echo escape(Token::generate()); ?>">
+                <input type="submit" value="Change Password" class="btn btn-primary">
+            </form>
+        </div>
     </div>
-
-    <div class="field">
-        <label for="new_password">New Password</label>
-        <input type="password" name="new_password" id="new_password">
-    </div>
-
-    <div class="field">
-        <label for="new_password_again">New Password Again</label>
-        <input type="password" name="new_password_again" id="new_password_again">
-    </div>
-
-    <input type="hidden" name="token" id="token" value="<?php echo escape(Token::generate()); ?>">
-    <input type="submit" value="Change Password">
-</form>
+</div>
+</div>

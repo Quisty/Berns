@@ -1,9 +1,8 @@
 * { box-sizing:border-box; }
 
 body {
-	font-family: Helvetica;
 	background: #eee;
-  -webkit-font-smoothing: antialiased;
+  	-webkit-font-smoothing: antialiased;
 }
 
 hgroup { 

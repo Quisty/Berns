@@ -1,15 +1,16 @@
 <?php
 require_once 'core/init.php';
-
-if(!$username = Input::get(user)) {
-	Redirect::to('index.php');
-} else {
-	$user = new User($username);
-	if(!$user->exists()) {
-		Redirect::to(404);
+$user = new User(); //Current
+if($user->isLoggedIn()) {
+	if(!$username = Input::get('user')) {
+		Redirect::to('index.php');
 	} else {
-		$data = $user->data();
-		?>
+		$user = new User($username);
+		if(!$user->exists()) {
+			Redirect::to(404);
+		} else {
+			$data = $user->data();
+			?>
 		<!DOCTYPE html>
 		<html>
 		<head>
@@ -17,6 +18,7 @@ if(!$username = Input::get(user)) {
 			<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 			<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 			<link href="https://fonts.googleapis.com/css?family=Lato:300" rel="stylesheet">
+			<link rel="stylesheet" type="text/css" href="css/style.css">
 			<link rel="stylesheet" href="css/animate.css">
 			<link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css">
 			<link rel="stylesheet" type="text/css" href="css/navbar.css">
@@ -39,66 +41,16 @@ if(!$username = Input::get(user)) {
 						<a href="#">Kontinenter</a>
 						<a href="profile.php?user=<?php echo escape($user->data()->username);?>">Profil</a>
 						<?php if($user->hasPermission('admin')) { ?>
-							<a href="adminpanel.php">Adminpanel</a>
+							<a href="adminpanel.php">Kontrolpanel</a>
 							<?php } ?>
 							<a href="logout.php">Log ud</a>
 						</div>
 					</nav>
 					<div class="main">
-						<div class="col-xs-12 col-md-6">
-							<div class="panel panel-primary">
-								<div class="panel-heading">
-								<h3>Opdater din adgangskode</h3>
-								</div>
-								<div class="panel-body">
-									<form action="" method="post">
-										<div class="field">
-											<label for="current_password">Current Password</label>
-											<input type="password" name="current_password" id="current_password">
-										</div>
-
-										<div class="field">
-											<label for="new_password">New Password</label>
-											<input type="password" name="new_password" id="new_password">
-										</div>
-
-										<div class="field">
-											<label for="new_password_again">New Password Again</label>
-											<input type="password" name="new_password_again" id="new_password_again">
-										</div>
-
-										<input type="hidden" name="token" id="token" value="<?php echo escape(Token::generate()); ?>">
-										<input type="submit" value="Change Password">
-									</form>
-								</div>
-							</div>
-						</div>
-						<div class="col-xs-12 col-md-6">
-							<div class="panel panel-primary">
-								<div class="panel-heading">
-								<h3>Opdater din adgangskode</h3>
-								</div>
-								<div class="panel-body">
-									<form action="" method="post">
-										<div class="field">
-											<label for="current_password">Current Password</label>
-											<input type="password" name="current_password" id="current_password">
-										</div>
-
-										<div class="field">
-											<label for="new_password">New Password</label>
-											<input type="password" name="new_password" id="new_password">
-										</div>
-
-										<div class="field">
-											<label for="new_password_again">New Password Again</label>
-											<input type="password" name="new_password_again" id="new_password_again">
-										</div>
-
-										<input type="hidden" name="token" id="token" value="<?php echo escape(Token::generate()); ?>">
-										<input type="submit" value="Change Password">
-									</form>
-								</div>
+						<?php include 'changepassword.php'; ?>
+						<div class="col-md-6">
+							<div class="profile-info">
+								<p></p>
 							</div>
 						</div>
 					</div>
@@ -137,3 +89,6 @@ if(!$username = Input::get(user)) {
 			<?php
 		}
 	}
+} else {
+	Redirect::to('login.php');
+}

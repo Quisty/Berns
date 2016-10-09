@@ -5,13 +5,12 @@
 body {
   padding: 0;
   margin: 0;
-  padding-top: 300px;
+  padding-top: 500px;
 }
 header {
   text-align: center;
   color: white;
-  height: 420px;
-  padding-top: 120px;
+  height: 500px;
   background: #2C3E50;
 }
 .main-nav,
@@ -47,7 +46,7 @@ header,
 }
 .main {
   background: #fff;
-  padding: 130px 25px 25px;
+  height: 100%;
 }
 
 .c-hamburger {
@@ -146,13 +145,12 @@ header,
   transition-delay: 0s, 0.3s;
 }
 
-@media only screen and (min-width:765px){
-/* styles for browsers larger than 960px; */
+@media only screen and (min-width:860px){
   .c-hamburger, .c-hamburger--htx {
     display: none;
   }
 }
-@media only screen and (max-width:765px){
+@media only screen and (max-width:860px){
   .nav-items {
     display: none;
   }

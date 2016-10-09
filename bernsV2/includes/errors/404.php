@@ -5,8 +5,8 @@
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="../css/animate.min.css">
-	<link rel="stylesheet" type="text/css" href="../css/bootstrap/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="../css/404.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/404.css">
 	<title>404 error</title>
 </head>
 <body>

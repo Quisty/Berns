@@ -1,35 +1,27 @@
 <?php
 require_once 'core/init.php';
-
-if (Input::exists()) {
-	if (Token::check(Input::get('token'))) {
-
-		$validate = new Validate();
-		$validation = $validate->check($_POST, array(
-			'username' => array('required' => true),
-			'password' => array('required' => true)
-		));
-
-		if ($validation->passed()) {
-			$user = new User();
-
-			$remember = (Input::get('remember') === 'on') ? true : false;
-
-			$login = $user->login(Input::get('username'), Input::get('password'), $remember);
-
-			if ($login) {
-				Redirect::to('index.php');
-			} else {
-				$loginFailed = 'Forkert adgangskode eller brugernavn.';
-			}
-
-		} else {
-			foreach($validation->errors() as $error) {
-				echo $error, '<br>';
-			}
-		}
-
-	}
+if(Input::exists()) {
+    if(Token::check(Input::get('token'))) {
+        $validate = new Validate();
+        $validation = $validate->check($_POST, array(
+            'username' => array('required' => true),
+            'password' => array('required' => true)
+        ));
+        if($validate->passed()) {
+            $user = new User();
+            $remember = (Input::get('remember') === 'on') ? true : false;
+            $login = $user->login(Input::get('username'), Input::get('password'), $remember);
+            if($login) {
+                Redirect::to('index.php');
+            } else {
+                echo '<p>Incorrect username or password</p>';
+            }
+        } else {
+            foreach($validate->errors() as $error) {
+                echo $error, '<br>';
+            }
+        }
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -38,6 +30,8 @@ if (Input::exists()) {
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link href="https://fonts.googleapis.com/css?family=Lato:300" rel="stylesheet">
 	<link rel="stylesheet" href="css/animate.css">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="css/login_register.css">
