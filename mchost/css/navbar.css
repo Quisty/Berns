@@ -1,0 +1,187 @@
+/* Styling the navigation sidebar */
+#sidebar {
+  z-index: 9;
+	background: #222222;
+	width: 300px;
+	height: 100%;
+	left: -300px;
+	top: 0px;
+  position: fixed;
+  display: block;
+}
+.nav-item {
+  width: 100%;
+  height: 120px;
+  cursor: pointer;
+}
+.nav-item p.heading {
+  color: white;
+  font-size: 35px;
+  text-align: center;
+  padding: 20px 0px 0px 0px;
+}
+.nav-item a {
+  width: 100%;
+  height: 120px;
+  display: block;
+}
+.nav-item:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border: 100px solid rgba(255, 255, 255, 0);
+  border-left: 60px solid rgba(255, 255, 255, 0.1);
+  border-top: 180px solid  rgba(255,255, 255, 0.1);
+}
+.nav-item a span:hover {
+  box-shadow: 0px 1px 0px 0px 2px #888888;
+  text-decoration: none;
+}
+.nav-item a:active, .nav-item a:link {
+  text-decoration: none;
+}
+.nav-item a, .glyph {
+  color: white;
+  font-size: 35px;
+  padding: 20px 20px 0px 20px;
+}
+.nav-item-c {
+  height: 80px;
+  width: 100%;
+}
+.nav-item-c p {
+  text-align: center;
+  color: white;
+  font-size: 15px;
+  padding: 20px 5px 0px 5px;
+}
+
+/* Navigation color for logo section */
+.nav-c-head {
+  background-color: #6379A9;
+}
+
+/* Navigation color for plans section */
+.nav-c-red {
+  background-color: #FF8F8C;
+}
+
+/* Navigation color for servers section */
+.nav-c-orange {
+  background-color: #FFCF8C;
+}
+
+/* Navigation color for contact section */
+.nav-c-green {
+  background-color: #A9E39D;
+}
+
+/* Navigation color for login section */
+.nav-c-purple {
+  background-color: #B884BD;
+}
+
+/* Navigation color for copyright section */
+.nav-c-c {
+  background-color: #222222;
+}
+
+/* Styling the navigation toggle button */
+.c-hamburger {
+  z-index: 10;
+  display: block;
+  position: fixed;
+  overflow: hidden;
+  margin: 10px 310px 0px;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  font-size: 0;
+  text-indent: -9999px;
+  appearance: none;
+  box-shadow: none;
+  border-radius: none;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.c-hamburger:focus {
+  outline: none;
+  background-color: transparent;
+}
+.c-hamburger span {
+  display: block;
+  position: absolute;
+  top: 18px;
+  left: 6px;
+  right: 6px;
+  height: 3px;
+  background: #6379A9;
+}
+
+.c-hamburger span::before,
+.c-hamburger span::after {
+  position: absolute;
+  display: block;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #6379A9;
+  content: "";
+}
+.c-hamburger span::before {
+  top: -11px;
+}
+
+.c-hamburger span::after {
+  bottom: -11px;
+}
+.c-hamburger--htx {
+  background-color: transparent;
+}
+
+.c-hamburger--htx span {
+  transition: background 0s 0.3s;
+}
+
+.c-hamburger--htx span::before,
+.c-hamburger--htx span::after {
+  transition-duration: 0.3s, 0.3s;
+  transition-delay: 0.3s, 0s;
+}
+
+.c-hamburger--htx span::before {
+  transition-property: top, transform;
+}
+
+.c-hamburger--htx span::after {
+  transition-property: bottom, transform;
+}
+
+/* active state, i.e. menu open */
+.c-hamburger--htx.is-active span {
+  background: none;
+}
+
+.c-hamburger--htx.is-active span::before {
+  background-color: red;
+  top: 0;
+  transform: rotate(45deg);
+}
+
+.c-hamburger--htx.is-active span::after {
+  background-color: red;
+  bottom: 0;
+  transform: rotate(-45deg);
+}
+
+.c-hamburger--htx.is-active span::before,
+.c-hamburger--htx.is-active span::after {
+  transition-delay: 0s, 0.3s;

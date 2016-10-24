@@ -1,0 +1,81 @@
+#loader {
+   width: 100%;
+   height: 100%;
+   top: 0;
+   left: 0;
+   position: fixed;
+   display: block;
+   opacity: 0.9;
+   background-color: #fff;
+   z-index: 99;
+   text-align: center;
+}
+#loader-oa {
+   width: 150px;
+   margin: 20% auto;
+}
+#loader-o1 {
+   position: relative;
+   float: left;
+   display: block;
+   margin: 10px;
+   background-color: #FF8F8C;
+   width: 16px;
+   height: 16px;
+   border-radius: 50%;
+   -webkit-animation: First 1.5s infinite; /* Safari 4.0 - 8.0 */
+   animation: First 1.5s infinite;
+}
+#loader-o2 {
+   position: relative;
+   float: left;
+   display: block;
+   margin: 10px;
+   background-color: #A9E39D;
+   width: 16px;
+   height: 16px;
+   border-radius: 50%;
+   -webkit-animation: Second 1.5s infinite; /* Safari 4.0 - 8.0 */
+   animation: Second 1.5s infinite;
+}
+#loader-o3 {
+   position: relative;
+   float: left;
+   display: block;
+   margin: 10px;
+   background-color: #B884BD;
+   width: 16px;
+   height: 16px;
+   border-radius: 50%;
+   -webkit-animation: Third 1.5s infinite; /* Safari 4.0 - 8.0 */
+   animation: Third 1.5s infinite;
+}
+@keyframes First {
+    0%   {top: -0px}
+    20%  {top: -10px}
+    40%  {top: -15px}
+    60%  {top: -15px}
+    80%  {top: -10px}
+    100% {top: -0px}
+}
+@keyframes Second {
+    0%   {top: -10px}
+    20%  {top: -15px}
+    40%  {top: -15px}
+    60%  {top: -10px}
+    80%  {top: -0px}
+    100% {top: -10px}
+}
+@keyframes Third {
+    0%   {top: -15px}
+    20%  {top: -15px}
+    40%  {top: -10px}
+    60%  {top: -0px}
+    80%  {top: -0px}
+    100% {top: -10px}
+}
+
+
+
+
+
