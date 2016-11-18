@@ -1,0 +1,27 @@
+/* Overall Style */
+html, body {
+	font-family: 'Lato';
+}
+
+/* Navbar styling */
+nav {
+	opacity: 0.9;
+}
+.nav-wrapper {
+	margin-left: 20px;
+	margin-right: 20px;
+}
+.nav-wrapper a {
+	color: #bdbdbd;
+}
+.nav-wrapper a:hover {
+	color: white;
+	text-decoration: none;
+}
+
+
+
+
+.parallax-container {
+	height: 600px;
+}
